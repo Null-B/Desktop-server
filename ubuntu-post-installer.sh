@@ -9,6 +9,8 @@ then
 	exit
 fi
 
+cd ~
+
 echo "also if you are useing any server version of a distrobution you migth want to make Normal Home directory folders"
 echo "(like Desktop, Downloads etc) [y/N]"
 
