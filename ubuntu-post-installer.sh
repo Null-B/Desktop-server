@@ -9,8 +9,6 @@ then
 	exit
 fi
 
-cd ~
-
 echo "also if you are useing any server version of a distrobution you migth want to make Normal Home directory folders"
 echo "(like Desktop, Downloads etc) [y/N]"
 
@@ -27,10 +25,12 @@ mkdir script
 # make a dir for easy clean up
 
 #apps for use
-sudo apt install kitty net-tools pamix ncdu feh htop git neofetch timeshift flameshot cmake curl ranger picom dmenu -y
+sudo apt install kitty net-tools pamix ncdu feh htop git neofetch timeshift flameshot cmake curl ranger picom dmenu firefox ninja meson -y
 
 # snap
 sudo snap install discord mailspring spotify
+
+sudo snap remove firefox
 
 # vscode
 sudo apt install software-properties-common apt-transport-https wget
