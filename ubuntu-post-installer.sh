@@ -25,7 +25,7 @@ mkdir script
 # make a dir for easy clean up
 
 #apps for use
-sudo apt install kitty net-tools pamix ncdu feh htop git neofetch timeshift flameshot cmake curl ranger picom dmenu firefox ninja meson -y
+sudo apt install kitty net-tools pamix ncdu feh htop git neofetch timeshift flameshot cmake curl ranger picom suckless-tools firefox ninja-build meson -y
 
 # snap
 sudo snap install discord mailspring spotify
@@ -63,10 +63,11 @@ sudo ninja install
 
 cd ..
 
-# i3 config
+# i3 config / picom
 git clone https://github.com/Null-B/dotfiles
 cd dotfiles 
-mv config /etc/i3
+sudo mv config ~/.config/i3
+sudo mv picom.conf ~/.config/i3
 
 cd ~
 
@@ -87,7 +88,6 @@ then
 fi
 
 # wallpaypr
-
 
 # aliasis
 # alias cd..="cd .."
