@@ -47,11 +47,12 @@ while true; do
       # thise are goign to be referenced fourter on with "n)"
       "1" "Drives" \
       "2" "Login Manger" \
-      "3" "" \
-      "4" "" \
-      "5" "" \
-      "6" "" \
-      "7" "" \
+      "3" "Desktop / Window Manger" \
+      "4" "Comunication" \
+      "5" "Developer tools" \
+      "6" "Office" \
+      "7" "Multimedia" \
+      "8" "Personal choices" \
       2>&1 1>&3)
    
    # just need to exit the script not very inportant than the rest
@@ -60,7 +61,7 @@ while true; do
    case $exit_status in 
       $DIALOG_CANCEL)
       clear
-      echo "Program terminated."
+      echo "Exited."
       exit
       ;;
       $DIALOG_ESC)
@@ -75,14 +76,14 @@ while true; do
   # if you are changeing anythig here please test it
 
    case $selection in
-      1 ) 
+      1 ) # Drives menu
          # case 1 line 48
          # first selection drives
          while true; do
             exec 2>&1
             selection=$(dialog \
                --backtitle "Desktop server Script" \
-               --title "install selection" \
+               --title "Drives" \
                --clear \
                --cancel-label "Exit" \
                --menu "Please select:" $HEIGHT $WIDTH 10 \
@@ -94,7 +95,19 @@ while true; do
             esac
             case $selection in
                1 )
-                  dialog --title "Desktop Drives" --menu "drives" 20 51 4 "Nvidia-autofind" "uses the u";
+                  while true; do
+                  exec 2>&1
+                  selection=$(dialog \
+                     --backtitle "Desktop server Script" \
+                     --title "Drives" \
+                     --clear \
+                     --cancel-label "Exit" \
+                     --menu "Please select:" $HEIGHT $WIDTH 10 \
+                     "1" "Auto-detect and install" \
+                     "2" "" \
+                     "3" "" \
+                     "4" "" \
+                     2>&1)
                   # arch nvidia nvidia-utils nvidia-settings
                   # sudo ubuntu-drivers autoinstall
                   # sudo apt install nvidia "nuber" make a text box with this and tell them to put the card nuber
@@ -122,30 +135,254 @@ while true; do
                   ;;
                * )
                   clear
-                  echo "Program terminated."
+                  echo "Exited."
+                  exit
+               ;;
+            # this migth fuck up the script if you are not using the right way to exit or just ues to much memorey
+      2 ) # Login manager menu
+         while true; do
+                  exec 2>&1
+                  selection=$(dialog \
+                     --backtitle "Desktop server Script" \
+                     --title "Personal choices" \
+                     --clear \
+                     --cancel-label "Exit" \
+                     --menu "Please select:" $HEIGHT $WIDTH 10 \
+                     "1" "Terminals" \
+                     "2" "Themes" \
+                     "3" "" \
+                     "4" "amd" \
+                     2>&1)
+                     case $selection in
+                     1 ) exit;; #
+
+                     * )
+                        clear
+                        echo "Exited."
+                        exit
+                     ;;
+      3 ) # Desktop / Window Manger Menu
+         while true; do
+            exec 2>&1
+            selection=$(dialog \
+               --backtitle "Desktop server Script" \
+               --title "Desktop Manger / Window Manger" \
+               --clear \
+               --cancel-label "Exit" \
+               --menu "Please select:" $HEIGHT $WIDTH 10 \
+               "1" "Desktop" \
+               "2" "Window Manger" \
+
+               2>&1)
+               case $selection in
+               1 ) 
+                  while true; do
+                  exec 2>&1
+                  selection=$(dialog \
+                     --backtitle "Desktop server Script" \
+                     --title "WM" \
+                     --clear \
+                     --cancel-label "Exit" \
+                     --menu "Please select:" $HEIGHT $WIDTH 10 \
+                     "1" "I3" \
+                     "2" "Awesome WM" \
+                     "3" "bspwm" \
+                     "4" "Qtile" \
+                     2>&1)
+                     case $selection in
+               2) 
+                  while true; do
+                  exec 2>&1
+                  selection=$(dialog \
+                     --backtitle "Desktop server Script" \
+                     --title "Desktop Manger" \
+                     --clear \
+                     --cancel-label "Exit" \
+                     --menu "Please select:" $HEIGHT $WIDTH 10 \
+                     "1" "Kde" \
+                     "1" "Kde Base" \
+                     "2" "Gnome" \
+                     "3" "Xfce" \
+                     "4" "LXDE" \
+                     "5" "LXQt" \
+                     "6" "Mate" \
+                     "7" "Cinnamon" \
+                     "8" "Budgie" \
+                     2>&1)
+                     case $selection in
+                  # install with the apt pakege manager
+                  1) 
+                     sudo pacman -S kde-applications --noconfirm
+                     ;;
+                  2) 
+                     result="Gnome is installing"
+                     display_result "$result"
+                     sudo pacman -S gnome --noconfirm
+                     result="Gnome is installed"
+                     display_result "$result"
+                     ;;
+                  3) 
+                     result="Xfce is installing"
+                     display_result "$result"
+                     sudo pacman -S xfce4 xfce4-goodies --noconfirm
+                     result="Xfce is installed"
+                     display_result "$result"
+                     ;;
+                  4)
+                     sudo apt install lxde 
+                  5) 
+                     result="LXQt is installing"
+                     display_result "$result"
+                     sudo pacman -S lxqt --noconfirm
+                     result="LXQt is installed"
+                     display_result "$result"
+                     ;;
+                  6) 
+                     result="Mate is installing"
+                     display_result "$result"
+                     sudo pacman -S mate mate-extra --noconfirm
+                     result="Mate is installed"
+                     display_result "$result"
+                     ;;
+                  7) 
+                     result="Cinnamon is installing"
+                     display_result "$result"
+                     sudo pacman -S cinnamon --noconfirm
+                     result="Cinnamon is installed"
+                     display_result "$result"
+                     ;;
+                  8) 
+                     result="Budgie is installing"
+                     display_result "$result"
+                     sudo pacman -S budgie-desktop --noconfirm
+                     result="Budgie is installed"
+                     display_result "$result"
+                     ;;
+                  9 ) 
+                     result="LXQt is installing"
+                     display_result "$result"
+                     sudo pacman -S lxqt --noconfirm
+                     result="LXQt is installed"
+                     display_result "$result"
+                     ;;
+
+                  * )
+                     clear
+                     echo "Exited."
+                     exit
+                     ;;
+                     
+      4 ) # Comunication menu 
+         while true; do
+            exec 2>&1
+            selection=$(dialog \
+               --backtitle "Desktop server Script" \
+               --title "Developer tools" \
+               --clear \
+               --cancel-label "Exit" \
+               --menu "Please select:" $HEIGHT $WIDTH 10 \
+               "1" "Terminals" \
+               "2" "Themes" \
+               "3" "" \
+               "4" "amd" \
+               2>&1)
+               case $selection in
+               1 ) exit;; #
+
+               * )
+                  clear
+                  echo "Exited."
+                  exit
+                  ;;
+      5 ) # Developer tools menu
+         while true; do
+            exec 2>&1
+            selection=$(dialog \
+               --backtitle "Desktop server Script" \
+               --title "Office" \
+               --clear \
+               --cancel-label "Exit" \
+               --menu "Please select:" $HEIGHT $WIDTH 10 \
+               "1" "Terminals" \
+               "2" "Themes" \
+               "3" "" \
+               "4" "amd" \
+               2>&1)
+               case $selection in
+               1 ) exit;; #
+
+               * )
+                  clear
+                  echo "Exited."
+                  exit
+                  ;;
+      6 ) # Multimedia menu
+         while true; do
+            exec 2>&1
+            selection=$(dialog \
+               --backtitle "Desktop server Script" \
+               --title "Multimedia" \
+               --clear \
+               --cancel-label "Exit" \
+               --menu "Please select:" $HEIGHT $WIDTH 10 \
+               "1" "Terminals" \
+               "2" "Themes" \
+               "3" "" \
+               "4" "amd" \
+               2>&1)
+               case $selection in
+               1 ) exit;; #
+
+               * )
+                  clear
+                  echo "Exited."
+                  exit
+                  ;;
+      7 ) # Office menu 
+         while true; do
+            exec 2>&1
+            selection=$(dialog \
+               --backtitle "Desktop server Script" \
+               --title "Office" \
+               --clear \
+               --cancel-label "Exit" \
+               --menu "Please select:" $HEIGHT $WIDTH 10 \
+               "1" "Terminals" \
+               "2" "Themes" \
+               "3" "" \
+               "4" "amd" \
+               2>&1)
+               case $selection in
+               1 ) exit;; #
+
+               * )
+                  clear
+                  echo "Exited."
+                  exit
+                  ;;
+      8 ) # Personal menu
+         while true; do
+            exec 2>&1
+            selection=$(dialog \
+               --backtitle "Desktop server Script" \
+               --title "Personal choices" \
+               --clear \
+               --cancel-label "Exit" \
+               --menu "Please select:" $HEIGHT $WIDTH 10 \
+               "1" "Terminals" \
+               "2" "Themes" \
+               "3" "" \
+               "4" "amd" \
+               2>&1)
+               case $selection in
+               1 ) exit;; #
+
+               * )
+                  clear
+                  echo "Exited."
                   exit
                   ;;
             esac
-         ;;
-      
-      2 )
-         # case 2
-         echo "test2"
-         ;;
-      3 )
-         echo "test3"
-         ;;
-      4 )
-         echo "test4"
-         ;;
-      5 )
-         echo "test5"
-         ;;
-      6 )
-         echo "test6"
-         ;;
-      7 )
-         echo "test7"
          ;;
    esac
 done
