@@ -1,4 +1,5 @@
-# Desktop install Script
+# Desktop install Script 
+THIS IS STILL IN TESTING IT IS VERY UNSTABEL RUN AT YOUR OWN RISK
 ## What is this script? 
 This is a script that is made for users that are not satisfeid with the ubuntu spins or do not want to go throuth the hasel of installing a headless version of ubuntu and instaling and configuring the  base pakeges on thier own.
 
