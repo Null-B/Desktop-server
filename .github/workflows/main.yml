@@ -5,17 +5,12 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
-  workflow_dispatch:
-
 jobs:
   requirements:
-
     runs-on: ubuntu-22.04
-
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/
+      - uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
       - name: SET autorun.sh
