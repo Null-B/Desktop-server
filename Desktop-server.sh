@@ -5,7 +5,6 @@
 
 
 
-
 echo "██████╗ ███████╗███████╗██╗  ██╗████████╗ ██████╗ ██████╗     ███████╗███████╗██████╗ ██╗   ██╗███████╗██████╗     ";
 echo "██╔══██╗██╔════╝██╔════╝██║ ██╔╝╚══██╔══╝██╔═══██╗██╔══██╗    ██╔════╝██╔════╝██╔══██╗██║   ██║██╔════╝██╔══██╗    ";
 echo "██║  ██║█████╗  ███████╗█████╔╝    ██║   ██║   ██║██████╔╝    ███████╗█████╗  ██████╔╝██║   ██║█████╗  ██████╔╝    ";
@@ -102,7 +101,6 @@ while true; do
                "3" "intel" \
                "4" "amd" \
                2>&1)
-            esac
             
             case $selection in
                1 )
@@ -119,41 +117,54 @@ while true; do
                      "3" "390 series e.g(older than GTX 1080/Ti, Quadro Series and more)" \
                      "4" "340 series e.g(older than GTX 1080/Ti 9/8/100 Series and more)" \
                      2>&1)
-                  esac
+                  
 
-                  1 )
+                  1 
                      # sudo ubuntu-drivers install
-                     esac
+                     autodetection=$?
+                     dialog --title "Selection Complete" --infobox "Your selection complete" 5 30; sleep 1;
+                     
                   ;;
                   
                   2) 
                      #sudo apt install nvidia-driver-470 nvidia-dkms-470
-                     esac
+                     nvidia-driver-470=$?
+                     dialog --title "Selection Complete" --infobox "Your selection complete" 5 30; sleep 1;
+                     
                   ;;
                   
                   3 )
                      #sudo apt install nvidia-driver-390 nvidia-dkms-390
-                     esac
+                     nvidia-driver-390=$?
+                     dialog --title "Selection Complete" --infobox "Your selection complete" 5 30; sleep 1;
+                     
                   ;;
                   
                   4 )
                      #sudo apt install nvidia-driver-340 nvidia-dkms-340
-                     esac
+                     nvidia-driver-340=$?
+                     dialog --title "Selection Complete" --infobox "Your selection complete" 5 30; sleep 1;
+                     
                   ;;
                   
                2 )
                   #sudo apt install xserver-xorg-video-nouveau
-                  dialog --title "Selection Complete" --infobox "Your selection complete" 10 60;sleep 1;
+                  nouveau=$?
+                  dialog --title "Selection Complete" --infobox "Your selection complete" 5 30; sleep 1;
+                  
                   ;;
 
-               3 ) lshw -c video
+               3 ) 
+                  #lshw -c video
                   dialog --title "To be complete" --infobox "Sadly our script has not incorporated Intel drivers yet. But if you do have a intel cpu with integrated graphics you can do \"lshw -c video\" affter." 10 60; sleep 5;
 
                   dialog --title "Desktop server Script"  --backtitle "What you could do"  --yesno "Ubuntu can run a autodetection and maybe find them. Do you want to run it?" 10 60;
 
-                  intel_drives_auto=$?
+                  #autodetec you can use the var from the first selection (autodetection=$?) line: 126
+                  intel_drives_auto=$? 
+                  dialog --title "Selection Complete" --infobox "Your selection complete" 5 30; sleep 1;
+                  
                   ;;
-
                4 )    
                   dialog --title "You migth not need to look at this section" --infobox "Amd drives are automatically install on most ubuntu systems only install something here if you need it" 10 60; sleep 5;
                   sudo lshw -c video ; sleep 5;
@@ -172,11 +183,16 @@ while true; do
                   esac
 
                   1 )
+                     #autodetec you can use the var from the first selection (autodetection=$?) line: 126
                      # sudo ubuntu-drivers install
+                     normal=$?
+                     dialog --title "Selection Complete" --infobox "Your selection complete" 5 30; sleep 1;
                   ;;
 
                   2 )
                      #sudo add-apt-repository ppa:oibaf/graphics-drivers
+                     Amd_repo=$?
+                     dialog --title "Selection Complete" --infobox "Your selection complete" 5 30; sleep 1;
                   ;;
 
                * )
@@ -184,11 +200,11 @@ while true; do
                   echo "Exited."
                   exit
                ;;
-            
 
             # this migth fuck up the script if you are not using the right way to exit or just ues to much memorey
 
-      2 ) # Login manager menu
+      2 ) 
+         # Login manager menu
          while true; do
             exec 2>&1
             selection=$(dialog \
@@ -199,17 +215,19 @@ while true; do
                --menu "Please select:" $HEIGHT $WIDTH 10 \
                "1" "Sddm (Kde)" \
                "2" "GDM" (Gnome) \
-               "3" "ligthdm (Not specified)" \
-               "4" "Ly (indipent)" \
+               "3" "ligthdm (All)" \
+               "4" "Ly (All)" \
                2>&1)
 
                case $selection in
                1 ) 
+                  sddm=$?
+                  
                   sudo apt install sddm
                   sudo systemctl enable sddm.service
                   
                   dialog --title "Install complete" --infobox "Done" 5 30; sleep 2;
-                  ;;
+               ;;
 
                2 )
                   sudo apt install gdm
@@ -238,7 +256,6 @@ while true; do
                   
                   dialog --title "Install complete" --infobox "Done" 5 30; sleep 2;
                   ;;
-               ;;
 
                sudo systemctl set-default graphical.target
 
@@ -370,51 +387,51 @@ while true; do
                      sudo apt install meta-kde 
 
                      # pop up box info
-                     ;;
+                  ;;
 
                   2) 
                      sudo apt install kde-plasma-desktop
 
                      # pop up box info
-                     ;;
+                  ;;
 
                   3) 
                      sudo apt install vanilla-gnome-desktop
                      # pop up box info
-                     ;;
+                  ;;
 
 
                   4)
                      sudo apt install lxde
                      # pop up box info
-                     ;; 
+                  ;; 
 
                   5) 
                      sudo apt install lxqt lxqt-core
                      # pop up box info
-                     ;;
+                  ;;
 
                   6)
                      sudo apt install mate-desktop-environment
                      # pop up box info 
                      #add a option for the meta and code apps for these
-                     ;;
+                  ;;
 
                   7) 
-                     sudo at install cinnamon-desktop
+                     sudo atp install cinnamon-desktop
                      # pop up box info
                      ;;
 
                   8) 
                      sudo apt install budgie-desktop
                      # pop up box info
-                     ;;
+                  ;;
 
                   * )
                      clear
                      echo "Exited."
                      exit
-                     ;;
+                  ;;
                      
       4 ) # Comunication menu 
          while true; do
@@ -573,6 +590,30 @@ while true; do
          ;;
    esac
 done
+
+# Install part of the desktop serverScript
+
+case $ in
+   0) echo "contuned";; #yes
+   1) exit;; #no
+   255) exit;; #exit
+esac
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
