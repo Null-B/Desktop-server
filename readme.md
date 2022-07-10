@@ -17,7 +17,7 @@ The main goal of this script if to help new users and long time linux users that
 [More information and how the script works on our wiki](https://github.com/Null-B/Desktop-server/wiki)  
 You install requirements manually or use the autorun.sh script.
 That will install and execute the script.  
-If you chose to do the requirements install manualy. You will frist need to clone the repository with this comand:
+You will frist need to clone the repository with this comand:
 
 ``` bash
 > git clone https://github.com/Null-B/dotfiles
@@ -27,16 +27,9 @@ Now you can cd into the repository and run the script with this comand:
 
 ``` bash
 > cd dotfiles
-> chmod +x requirements.sh
-> ./requirements.sh
+> chmod +x autorun.sh
+> ./autorun.sh
 ```
 
-This will make the script executeble and will install all the packages that are needed for the script to work.  
-Then you can make the main scrip executeble and run it:
-
-``` bash
-> chmod +x ubuntu-desktop-install.sh
-> ./ubuntu-desktop-install.sh
-```
-
-You will be presented with a blue dialog screen. More on the main install process can be found on the wiki.
+You will be presented with a blue dialog screen. More on the main install process can be found on the
+[wiki](https://github.com/Null-B/Desktop-server/wiki).
