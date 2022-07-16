@@ -105,7 +105,6 @@ while true; do
             case $selection in
                1 )
                   while true; do
-                  exec 2>&1
                   selection=$(dialog \
                      --backtitle "Desktop server Script" \
                      --title "Drives" \
@@ -116,7 +115,7 @@ while true; do
                      "2" "470 series e.g(RTX 3050, RTX 3070/Ti)" \
                      "3" "390 series e.g(older than GTX 1080/Ti, Quadro Series and more)" \
                      "4" "340 series e.g(older than GTX 1080/Ti 9/8/100 Series and more)" \
-                     2>&1)
+                     )
                   
 
                   1 
@@ -124,30 +123,31 @@ while true; do
                      autodetection=$?
                      dialog --title "Selection Complete" --infobox "Your selection complete" 5 30; sleep 1;
                      
-                  ;;
                   
-                  2) 
+                  
+                  2 
                      #sudo apt install nvidia-driver-470 nvidia-dkms-470
                      nvidia-driver-470=$?
                      dialog --title "Selection Complete" --infobox "Your selection complete" 5 30; sleep 1;
                      
-                  ;;
                   
-                  3 )
+                  
+                  3 
                      #sudo apt install nvidia-driver-390 nvidia-dkms-390
                      nvidia-driver-390=$?
                      dialog --title "Selection Complete" --infobox "Your selection complete" 5 30; sleep 1;
                      
-                  ;;
                   
-                  4 )
+                  
+                  4 
                      #sudo apt install nvidia-driver-340 nvidia-dkms-340
                      nvidia-driver-340=$?
                      dialog --title "Selection Complete" --infobox "Your selection complete" 5 30; sleep 1;
                      
-                  ;;
                   
-               2 )
+                  done
+                  
+               2 
                   #sudo apt install xserver-xorg-video-nouveau
                   nouveau=$?
                   dialog --title "Selection Complete" --infobox "Your selection complete" 5 30; sleep 1;
@@ -182,20 +182,20 @@ while true; do
                      2>&1)
                   esac
 
-                  1 )
+                  1 
                      #autodetec you can use the var from the first selection (autodetection=$?) line: 126
                      # sudo ubuntu-drivers install
                      normal=$?
                      dialog --title "Selection Complete" --infobox "Your selection complete" 5 30; sleep 1;
                   ;;
 
-                  2 )
+                  2 
                      #sudo add-apt-repository ppa:oibaf/graphics-drivers
                      Amd_repo=$?
                      dialog --title "Selection Complete" --infobox "Your selection complete" 5 30; sleep 1;
                   ;;
 
-               * )
+               * 
                   clear
                   echo "Exited."
                   exit
@@ -203,7 +203,7 @@ while true; do
 
             # this migth fuck up the script if you are not using the right way to exit or just ues to much memorey
 
-      2 ) 
+      2 
          # Login manager menu
          while true; do
             exec 2>&1
